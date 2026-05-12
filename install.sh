@@ -1,11 +1,22 @@
 #!/bin/bash
 
-set -e
+echo "Setting up dotfiles..."
 
-echo "🔧 Setting up dotfiles..."
+mkdir -p ~/.config/nvim ~/.config/tmux ~/.config/zsh
 
-# Neovim
-echo "→ Linking Neovim"
-ln -sf ~/dotfiles/nvim ~/.config/nvim
+link() {
+  target="$1"
+  dest="$2"
 
-echo "✅ Done. Restart terminal or open nvim."
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    rm -rf "$dest"
+  fi
+
+  ln -s "$target" "$dest"
+}
+
+link ~/dotfiles/nvim ~/.config/nvim
+link ~/dotfiles/tmux/tmux.conf ~/.config/tmux/tmux.conf
+link ~/dotfiles/zsh/.zshrc ~/.zshrc
+
+echo "Done."

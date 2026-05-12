@@ -1,1 +1,3 @@
 echo "DOTFILES LOADED"
+
+PROMPT='%~: '
