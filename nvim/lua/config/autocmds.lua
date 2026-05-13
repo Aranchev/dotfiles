@@ -1,8 +1,31 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
---
--- Add any additional autocmds here
--- with `vim.api.nvim_create_autocmd`
---
--- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
--- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+local augroup = vim.api.nvim_create_augroup("UserAutocmds", { clear = true })
+
+-- Snacks picker preview: better readability
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup,
+  pattern = "snacks_picker_preview",
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+  end,
+})
+
+-- Markdown: enable line numbers (local to buffer)
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup,
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.number = true
+    vim.opt_local.relativenumber = true
+  end,
+})
+
+-- Python: absolute numbers only
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup,
+  pattern = "python",
+  callback = function()
+    vim.opt_local.number = true
+    vim.opt_local.relativenumber = false
+  end,
+})
