@@ -29,3 +29,19 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.relativenumber = false
   end,
 })
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*.md",
+  callback = function()
+    local name = vim.fn.expand("%:t:r")
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, {
+      "---",
+      "title: " .. name,
+      "aliases: []",
+      "tags: []",
+      "---",
+      "",
+    })
+  end,
+})

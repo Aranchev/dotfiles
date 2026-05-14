@@ -7,7 +7,7 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" }, -- ✅ added this line
     config = function()
       require("catppuccin").setup({
-        flavour = "mocha",
+        flavour = "frappe",
         transparent_background = true,
         styles = {
           comments = { "italic" },
