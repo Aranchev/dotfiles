@@ -29,3 +29,26 @@ vim.keymap.set("n", "<leader>ou", function()
 
   vim.ui.open(url)
 end, { desc = "Open Markdown reference link" })
+
+vim.api.nvim_create_user_command("C", function(opts)
+  local start_line = opts.line1
+  local end_line = opts.line2
+
+  for lnum = start_line, end_line do
+    local line = vim.fn.getline(lnum)
+    if not line:match("^%s*#") then
+      vim.fn.setline(lnum, "# " .. line)
+    end
+  end
+end, { range = true })
+
+vim.api.nvim_create_user_command("UC", function(opts)
+  local start_line = opts.line1
+  local end_line = opts.line2
+
+  for lnum = start_line, end_line do
+    local line = vim.fn.getline(lnum)
+    local uncommented = line:gsub("^%s*#%s?", "", 1)
+    vim.fn.setline(lnum, uncommented)
+  end
+end, { range = true })
