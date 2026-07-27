@@ -1,3 +1,23 @@
+-- === Kitty startup double-Enter fix ===
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    -- Disable Kitty keyboard protocol early
+    io.stdout:write("\027[>1u")
+    vim.cmd("redraw")
+  end,
+})
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    io.stdout:write("\027[<1u")
+  end,
+})
+
+-- Extra safety
+vim.opt.ttimeoutlen = 5
+vim.opt.timeoutlen = 300
+
 vim.g.markdown_fenced_languages = {
   "html",
   "python",

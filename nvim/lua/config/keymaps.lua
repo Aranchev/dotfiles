@@ -52,3 +52,22 @@ vim.api.nvim_create_user_command("UC", function(opts)
     vim.fn.setline(lnum, uncommented)
   end
 end, { range = true })
+
+local surround_pairs = {
+  ["("] = ")",
+  ["["] = "]",
+  ["{"] = "}",
+  ['"'] = '"',
+  ["'"] = "'",
+}
+
+for open, close in pairs(surround_pairs) do
+  vim.keymap.set("x", open, function()
+    vim.cmd("normal! c" .. open)
+    vim.cmd("normal! p")
+    vim.cmd("normal! a" .. close)
+    vim.cmd("normal! h") -- move cursor inside
+  end, { desc = "Surround with " .. open .. close, silent = true })
+end
+
+vim.keymap.set("n", "<leader>fi", ":set foldmethod=indent<CR>", { desc = "Enable indent folding" })
