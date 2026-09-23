@@ -17,6 +17,9 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 -- Extra safety
 vim.opt.ttimeoutlen = 5
 vim.opt.timeoutlen = 300
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
 
 vim.g.markdown_fenced_languages = {
   "html",

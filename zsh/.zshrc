@@ -37,6 +37,7 @@ alias wow='cd /home/aranchev/games/World\ of\ Warcraft\ 3.3.5a && wine Wow.exe'
 alias quartz='npx quartz build --serve'
 alias quartzweb='xdg-open https://aranchev.github.io/quartz_webvault/'
 alias quartzlocal='xdg-open http://localhost:8080'
+alias tbc='wine "/home/aranchev/.wine/drive_c/Program Files (x86)/World of Warcraft 2.4.3/Wow.exe"'
 
 flaskblog() {
     cd ~/projects/flask-blog || return
@@ -48,3 +49,7 @@ flaskblog() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# fzf
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
